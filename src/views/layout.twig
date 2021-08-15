@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Render Amazon Feed</title>
+</head>
+<body>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 0px;
+            margin: 0px;
+            position: relative;
+            padding-bottom: 6rem;
+            min-height: calc(100vh - 6rem);
+        }
+
+        .aritcle-section {
+            margin: 5px 0px;
+            border: 1px solid #333;
+            padding: 5px;
+        }
+
+        header ul {
+            list-style: none;
+            padding: 0px;
+            margin: 0px;
+            background-color: #333;
+        }
+
+        header ul li {
+            display: inline-block;
+        }
+
+        header ul li a {
+            color: #FFF;
+            padding: 10px 20px;
+            display: inline-block;
+            text-decoration: none;
+            outline: none;
+            border: 1px solid #333;
+        }
+
+        header ul li a:hover {
+            background: #FFF;
+            color: #333;
+        }
+
+        footer {
+            background: #333;
+            color: #FFF;
+            text-align: center;
+            padding: 10px 0px;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+    <header>
+        <ul>
+            <li>
+                <a href="/">Home</a>
+            </li>
+            <li>
+                <a href="/about">About</a>
+            </li>
+        </ul>
+    </header>
+    <div>
+        {% block content %}{% endblock %}
+    </div>
+    <footer>thaisang.nguyen@gmail.com &copy; 2020</footer>
+</body>
+</html>

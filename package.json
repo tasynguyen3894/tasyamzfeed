@@ -1,0 +1,24 @@
+{
+  "name": "tasyamzfeed",
+  "version": "1.0.0",
+  "main": "app.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tasynguyen3894/tasyamzfeed"
+  },
+  "description": "Simple tool for testing Amazon RSS",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "inline-css": "^3.0.0",
+    "twig": "^1.15.4",
+    "xml2js": "^0.4.23"
+  }
+}

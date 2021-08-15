@@ -1,0 +1,41 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+<style>
+    .feed-form {
+        border: 1px solid #333;
+        padding: 15px;
+        width: 500px;
+        margin: 20px auto;
+    }
+
+    .feed-form  div {
+        text-align: left;
+        margin-top: 10px;
+    }
+
+    .feed-form  div label {
+        display: block;
+    }
+
+    .feed-form  div input {
+       width: 100%;
+    }
+</style>
+<div>
+    <div class="feed-form">
+        <form action="" method="get">
+            <div>
+                <label for="site">Feed Rss URL</label>
+                <input type="text" name="site" value="{{site}}">
+            </div>
+            <div>
+                <button>Render</button>
+            </div>
+        </form>
+    </div>
+    <div>
+        {{ html }}
+    </div>
+</div>
+{% endblock %}

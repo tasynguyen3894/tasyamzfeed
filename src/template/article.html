@@ -1,0 +1,24 @@
+<div class="article">
+    <div class="header">
+        <div class="header-background">
+            <img src="{{ article_heroImage }}" alt="">
+        </div>
+        <div class="header-text">
+            <h2 class="header-title">{{ article_title }}</h2>
+            <h3 class="header-subtitle">{{ article_subtitle }}</h3>
+            <div class="header-pubDate">Updated {{ article_pubDate }}</div>
+        </div>
+    </div>
+    <div class="meta">
+        <div class="meta-author">
+            <div>Written by</div>
+            <div><strong>{{ article_author }}</strong></div>
+        </div>
+        <div class="meta-introtext">
+            {{ article_introText }}
+        </div>
+    </div>
+    <div class="body">
+        {{ article_content }}
+    </div>
+</div>
