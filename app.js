@@ -26,8 +26,12 @@ app.get('/', async (req, res) => {
     let site = req.query.site;
     let html = ''
     if(site) {
-        let data = await feedHandler.requestFeedBody(site);
-        html = feedHandler.renderFeed(data);
+        try {
+            let data = await feedHandler.requestFeedBody(site);
+            html = feedHandler.renderFeed(data);
+        } catch (error) {
+            // console.log(error)
+        }
     }
     res.render('index.twig', {
         html: html,
@@ -38,12 +42,20 @@ app.get('/', async (req, res) => {
 apiRouter.get('/render_by_url', async (req, res) => {
     let url = req.query.url;
     if(url) {
-        let data = await feedHandler.requestFeedBody(url);
-        let html = await feedHandler.convertStyleToInline(feedHandler.renderFeed(data));
-        res.json({
-            status: true,
-            output: html
-        }); 
+        try {
+            let data = await feedHandler.requestFeedBody(url);
+            let html = await feedHandler.convertStyleToInline(feedHandler.renderFeed(data));
+            res.json({
+                status: true,
+                output: html
+            });
+        } catch (error) {
+            res.json({
+                status: false,
+                message: 'Load Content error'
+            });
+        }
+        return false;
     } else {
         res.status(422);
         res.json({
