@@ -33,6 +33,9 @@
                 <button>Render</button>
             </div>
         </form>
+        {% if error %}
+            <div style="color: #FF0000">{{ error }}</div>
+        {% endif %}
     </div>
     <div>
         {{ html }}

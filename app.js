@@ -24,18 +24,20 @@ app.use('/', (req, res, next) => {
 
 app.get('/', async (req, res) => {
     let site = req.query.site;
-    let html = ''
+    let html = '';
+    let error = null;
     if(site) {
         try {
             let data = await feedHandler.requestFeedBody(site);
             html = feedHandler.renderFeed(data);
-        } catch (error) {
-            // console.log(error)
+        } catch (err) {
+            error = err.message;
         }
     }
     res.render('index.twig', {
         html: html,
-        site: site
+        site: site,
+        error: error
     }); 
 });
 
@@ -49,10 +51,10 @@ apiRouter.get('/render_by_url', async (req, res) => {
                 status: true,
                 output: html
             });
-        } catch (error) {
+        } catch (err) {
             res.json({
                 status: false,
-                message: 'Load Content error'
+                message: err.message
             });
         }
         return false;
