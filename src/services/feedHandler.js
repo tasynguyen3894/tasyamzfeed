@@ -25,7 +25,14 @@ const requestFeedBody = async (url) => {
   });
   let body = data.data;
   body = body.replace(/ & /g, ' &amp; ');
-  let xmlParse = await new Promise((resolve, reject) => {
+  let xmlParse = await xmlParser(body);
+
+  return xmlParse;
+}
+
+const xmlParser = (body) => {
+  body = body.replace(/ & /g, ' &amp; ');
+  return new Promise((resolve, reject) => {
     parseString(body, function (error, result) {
       if(error) {
         reject(error);
@@ -34,8 +41,6 @@ const requestFeedBody = async (url) => {
       }
     });
   });
-
-  return xmlParse;
 }
 
 const requestFeedBodyTest = async (url) => {
@@ -119,5 +124,6 @@ module.exports = {
   requestFeedBody: requestFeedBody,
   renderFeed: renderFeed,
   convertStyleToInline: convertStyleToInline,
-  requestFeedBodyTest: requestFeedBodyTest
+  requestFeedBodyTest: requestFeedBodyTest,
+  xmlParser: xmlParser
 }

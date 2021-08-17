@@ -23,14 +23,11 @@
     }
 </style>
 <div>
-    <div>
-        <a href="/get_by_content">Render by content</a>
-    </div>
     <div class="feed-form">
-        <form action="" method="get">
+        <form action="" method="post">
             <div>
-                <label for="site">Feed Rss URL</label>
-                <input type="text" name="site" value="{{site}}">
+                <label for="feed">Feed Rss URL</label>
+                <div><textarea style="width: 100%" name="feed">{{feed}}</textarea></div>
             </div>
             <div>
                 <button>Render</button>

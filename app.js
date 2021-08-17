@@ -2,12 +2,13 @@ require('dotenv').config();
 const express = require('express');
 const PORT = process.env.PORT || 3000;
 const app = express();
-
+const bodyParser = require('body-parser')
 const feedHandler = require('./src/services/feedHandler')
 const helper = require('./src/services/helper');
 
 const apiRouter = express.Router();
 
+app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }));
 app.set('views', __dirname + '/src/views');
 app.set('view engine', 'twig');
 app.set('twig options', { 
@@ -37,6 +38,26 @@ app.get('/', async (req, res) => {
     res.render('index.twig', {
         html: html,
         site: site,
+        error: error
+    }); 
+});
+
+app.all('/get_by_content', async (req, res) => {
+    let feed = '';
+    let html = '';
+    let error = null;
+    if(req.method === 'POST') {
+        try {
+            feed = req.body.feed;
+            let feedParse = await feedHandler.xmlParser(feed);
+            html = feedHandler.renderFeed(feedParse);
+        } catch (err) {
+            error = err.message;
+        }
+    }
+    res.render('content.twig', {
+        feed: feed,
+        html: html,
         error: error
     }); 
 });
